@@ -5,7 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { resolve } from "node:path";
 
 export default defineConfig({
-    base: "/dkmfaktfe/",
+    base: "/wa_ga_anwlst/gawebfiles/ga_bmb/dist",
     plugins: [
         react(),
         tailwindcss(),

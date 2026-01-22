@@ -41,15 +41,22 @@
   dependencies:
     "@at.dkm/dkm-ts-lib-gen" "^1.0.3"
 
+"@at.dkm/dkm-ts-lib-decimal@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@at.dkm/dkm-ts-lib-decimal/-/dkm-ts-lib-decimal-1.0.2.tgz#4271edd697530f60ea11545712e887a425eaa619"
+  integrity sha512-GxLfDYyQWCbw+Zbm8K1Axzhzt7idqb39QyqU5oJgUB26i6Bd6qU/V9Rk7HwaQJK2I1ausZAfNJwHVBHWM0bq5Q==
+  dependencies:
+    decimal.js "^10.6.0"
+
 "@at.dkm/dkm-ts-lib-gen@^1.0.3":
   version "1.2.31"
   resolved "https://registry.yarnpkg.com/@at.dkm/dkm-ts-lib-gen/-/dkm-ts-lib-gen-1.2.31.tgz#450ded45f17cfe6665902f806d0f1c0428a14a12"
   integrity sha512-AdlUwjgt8UQsJI0p8Uk72LzlKehXmSikeDKuK+KlNRTvtoH/g7SlZZZtbRdaafjuVF9fLk1Qe6Oox/T2fgYAKg==
 
-"@at.dkm/dkm-ts-lib-gen@^1.2.34":
-  version "1.2.34"
-  resolved "https://registry.yarnpkg.com/@at.dkm/dkm-ts-lib-gen/-/dkm-ts-lib-gen-1.2.34.tgz#20dd639de688e1b3af114f98e6db5c209b276d69"
-  integrity sha512-JvIDmRtM3V06bhJZuYGtwxDvvs1D7hMdC7K6R9BmzalnRslwtFnyyNZ9qd35ms/dM+NfLV8TJIfKgTcl+7BKCQ==
+"@at.dkm/dkm-ts-lib-gen@^1.2.35":
+  version "1.2.35"
+  resolved "https://registry.yarnpkg.com/@at.dkm/dkm-ts-lib-gen/-/dkm-ts-lib-gen-1.2.35.tgz#13e7c723bb1693f1de6634cd7df2709d0f019342"
+  integrity sha512-8LQ0rkaifRfz/Zp4zupzcINqybhc7tqloiXHxulj3GgV8mTQWnK8zhz/+WOS97fpoXbDuiYGtcJHVMKBsVd0gw==
 
 "@at.dkm/dkm-ts-lib-jquery@^1.0.0":
   version "1.1.5"

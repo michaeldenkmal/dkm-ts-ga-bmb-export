@@ -21,6 +21,9 @@
         font-family: sans-serif;
         font-size: smaller;
     }
+    .error {
+        @apply bg-red-400 max-h-64 overflow-y-auto
+    }
     .dkm-link {
         @apply hover:cursor-pointer font-medium text-black dark:text-blue-500 underline hover:underline;
     }
