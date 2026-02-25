@@ -19,6 +19,7 @@ export function buildWebSrvcUrl(funcName: string,pathParams?:string[]) {
 export interface ExportBmbByZrPars{
     von:Date
     bis:Date
+    ignoreErrorsAndLog:boolean
 }
 
 

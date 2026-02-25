@@ -1,12 +1,14 @@
 import './App.css'
 
 import "./index.css";
-import type {MayBeDate} from "@at.dkm/dkm-ts-lib-gen/lib/may_be_types";
+import type {MayBeDate, MayBeString} from "@at.dkm/dkm-ts-lib-gen/lib/may_be_types";
 import NativeDateInput from "./dkm_comps/NativeDateInput.tsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import * as ga_bmb_ws from "./ws/ga_bmb_ws.ts";
 import useFileDownload from "./ws/useFileDownload.ts";
 import {DKM_BUILD_VERSION} from "./version.ts";
+import NativeBoolInput from "./dkm_comps/NativeBoolInput.tsx";
+import {dateToDkmDateStr, dkmDateJson2Date, isDkmDateFormat} from "@at.dkm/dkm-ts-lib-gen/lib/dateUtil";
 
 
 
@@ -14,10 +16,20 @@ import {DKM_BUILD_VERSION} from "./version.ts";
 function App() {
     const [s_von, s_setVon] = useState<MayBeDate>();
     const [s_bis, s_setBis] = useState<MayBeDate>();
+    const [s_ignoreErrorsAndLog, s_setIgnoreErrorsAndLog] = useState<boolean>(false);
     const theFileDownload = useFileDownload()
     const [s_isLoading, s_setIsLoading] = useState(false)
 
+    // nur beim Laden
+    useEffect(()=> {
+        const storedVon :MayBeString = localStorage.getItem("von");
+        const storedBis :MayBeString = localStorage.getItem("bis");
 
+        if (storedVon && storedBis && isDkmDateFormat(storedVon) && isDkmDateFormat(storedBis)) {
+            s_setVon(dkmDateJson2Date(storedVon));
+            s_setBis(dkmDateJson2Date(storedBis));
+        }
+    },[])
 
     function calcBtnStartDisabled():boolean {
         if (!s_von) {
@@ -33,11 +45,14 @@ function App() {
         if (!s_von || !s_bis) {
             return;
         }
+        localStorage.setItem("von", dateToDkmDateStr(s_von))
+        localStorage.setItem("bis", dateToDkmDateStr(s_bis))
+
         const url:string = debug ?
             ga_bmb_ws.buildWebSrvcUrl("export_bmb_by_zr_debug")
             : ga_bmb_ws.buildWebSrvcUrl("export_bmb_by_zr");
         const payLoad:ga_bmb_ws.ExportBmbByZrPars = {
-            von: s_von, bis:s_bis
+            von: s_von, bis:s_bis, ignoreErrorsAndLog:s_ignoreErrorsAndLog
         }
         const filename  =debug ? "export_bmb_by_zr_debug.csv":"export_bmb_by_zr.csv";
         theFileDownload.resetError();
@@ -71,6 +86,11 @@ function App() {
                         <label className={"mr-2"} >bis</label>
                         <NativeDateInput value={s_bis}
                                          onChange={v=> s_setBis(v)}/>
+                    </div>
+                    <div className={"w-50"}>
+                        <label className={"mr-2"} >Fehler ignorieren und loggen</label>
+                        <NativeBoolInput value={s_ignoreErrorsAndLog}
+                                         onChange={v=> s_setIgnoreErrorsAndLog(v||false)}/>
                     </div>
                     <div className={""}>
                         <button className={"dkm-button"} disabled={calcBtnStartDisabled()}
