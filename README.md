@@ -1,3 +1,10 @@
+# Template für Typescript - React - Vite - Tailwind
+
+nach dem Klonen muss folgendes geändert werden:
+
+* package.json - namen festlegen
+
+
 # Node Version
 
 ```bash
